@@ -3,11 +3,11 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ToolsBrowser from "@/components/ToolsBrowser";
-import { GITHUB_ORG } from "@/lib/site";
+import { GITHUB_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Tools",
-  description: "Every SkipIt tool with a direct download from its latest GitHub release.",
+  description: "Every SkipIt tool, with a direct download from its latest GitHub release or a link to the web app.",
 };
 
 export default function ToolsPage() {
@@ -21,10 +21,11 @@ export default function ToolsPage() {
               Ready to <span className="text-gradient">download.</span>
             </h1>
             <p className="mt-4 text-white/60 max-w-xl">
-              Every tool links straight to its latest GitHub release. Pick your platform and go.
+              Apps link straight to their latest GitHub release, web tools open right in your browser. Pick your
+              platform and go.
             </p>
           </div>
-          <a href={GITHUB_ORG} target="_blank" rel="noreferrer" className="btn btn-ghost px-5 py-3 self-start md:self-auto">
+          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="btn btn-ghost px-5 py-3 self-start md:self-auto">
             All repositories
             <ArrowUpRight className="w-4 h-4" />
           </a>

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import Logo from "@/components/Logo";
+import { GITHUB_URL } from "@/lib/site";
 
 const links = [
   { href: "/", label: "Home" },
@@ -65,7 +66,7 @@ export default function Navbar() {
               );
             })}
             <a
-              href="https://github.com/SkipIt-Labs"
+              href={GITHUB_URL}
               target="_blank"
               rel="noreferrer"
               className="ml-2 btn btn-ghost px-4 py-2 text-sm"
@@ -111,7 +112,7 @@ export default function Navbar() {
                   </Link>
                 ))}
                 <a
-                  href="https://github.com/SkipIt-Labs"
+                  href={GITHUB_URL}
                   target="_blank"
                   rel="noreferrer"
                   className="px-4 py-3 rounded-xl text-white/70 hover:bg-white/5 inline-flex items-center gap-1.5"

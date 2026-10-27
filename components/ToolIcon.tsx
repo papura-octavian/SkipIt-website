@@ -1,7 +1,8 @@
-import { ArrowLeftRight, AudioWaveform, Download, Power, Presentation, ScanEye } from "lucide-react";
+import { ArrowLeftRight, AudioWaveform, BookOpenText, Download, Power, Presentation, ScanEye } from "lucide-react";
 import type { Tool, ToolIconName } from "@/lib/tools";
 
 const icons: Record<ToolIconName, React.ComponentType<{ className?: string }>> = {
+  book: BookOpenText,
   download: Download,
   slides: Presentation,
   wave: AudioWaveform,

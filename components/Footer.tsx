@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import { CONTACT_EMAIL, GITHUB_ORG } from "@/lib/site";
+import { CONTACT_EMAIL, GITHUB_URL } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -19,7 +19,7 @@ export default function Footer() {
             <Link href="/contact/" className="hover:text-white transition-colors">
               Request a tool
             </Link>
-            <a href={GITHUB_ORG} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
+            <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
               GitHub
             </a>
             <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-white transition-colors">

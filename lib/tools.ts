@@ -1,10 +1,11 @@
-export type Platform = "Windows" | "Android" | "Raspberry Pi";
+export type Platform = "Windows" | "Android" | "Raspberry Pi" | "Web";
 
-export type ToolIconName = "download" | "slides" | "wave" | "eye" | "sync" | "power";
+export type ToolIconName = "download" | "slides" | "wave" | "eye" | "sync" | "power" | "book";
 
 export type Download = {
   label: string;
   platform: Platform;
+  /** Installer for desktop/mobile platforms; the site itself for "Web". */
   url: string;
 };
 
@@ -13,7 +14,8 @@ export type Tool = {
   name: string;
   tagline: string;
   description: string;
-  version: string;
+  /** Release version; omitted for web apps, which are always up to date. */
+  version?: string;
   icon: ToolIconName;
   /** Gradient used for the tool's icon tile. */
   accent: [string, string];
@@ -66,6 +68,24 @@ export const tools: Tool[] = [
     ],
   },
   {
+    slug: "verset-finder",
+    name: "Verset Finder",
+    tagline: "Search the Bible instantly, right in your browser.",
+    description:
+      "Find any word, phrase or reference (like @ioan 3:16) in the Romanian Cornilescu and English ASV Bibles. Bookmarks, highlights, notes and a sermon editor, saved locally. Works offline.",
+    icon: "book",
+    accent: ["#ffb547", "#8b7bff"],
+    tags: ["bible", "search", "study"],
+    repoUrl: "https://github.com/papura-octavian/Verset-Finder",
+    downloads: [
+      {
+        label: "Open versetfinder.study",
+        platform: "Web",
+        url: "https://versetfinder.study/",
+      },
+    ],
+  },
+  {
     slug: "pocketsync",
     name: "PocketSync",
     tagline: "Move files between PC and phone, both ways.",
@@ -99,12 +119,12 @@ export const tools: Tool[] = [
     icon: "eye",
     accent: ["#8b7bff", "#ff4fb0"],
     tags: ["images", "video", "viewer"],
-    repoUrl: "https://github.com/SkipIt-Labs/OmniView",
+    repoUrl: "https://github.com/papura-octavian/OmniView",
     downloads: [
       {
         label: "Windows installer",
         platform: "Windows",
-        url: "https://github.com/SkipIt-Labs/OmniView/releases/download/v1.0.0/OmniView.Setup.1.0.0.exe",
+        url: "https://github.com/papura-octavian/OmniView/releases/download/v1.0.0/OmniView.Setup.1.0.0.exe",
       },
     ],
   },
@@ -137,12 +157,12 @@ export const tools: Tool[] = [
     icon: "slides",
     accent: ["#ffb547", "#ff4fb0"],
     tags: ["lyrics", "powerpoint", "slides"],
-    repoUrl: "https://github.com/SkipIt-Labs/Vers2Go",
+    repoUrl: "https://github.com/papura-octavian/Vers2Go",
     downloads: [
       {
         label: "Windows installer",
         platform: "Windows",
-        url: "https://github.com/SkipIt-Labs/Vers2Go/releases/download/v1.0.0/Vers2Go-Setup-1.0.0.exe",
+        url: "https://github.com/papura-octavian/Vers2Go/releases/download/v1.0.0/Vers2Go-Setup-1.0.0.exe",
       },
     ],
   },
@@ -155,18 +175,18 @@ export const tools: Tool[] = [
     icon: "download",
     accent: ["#4cc9ff", "#3ee8b5"],
     tags: ["video", "audio", "offline"],
-    repoUrl: "https://github.com/SkipIt-Labs/Media-Saver",
+    repoUrl: "https://github.com/papura-octavian/Media-Saver",
     downloads: [
       {
         label: "Windows installer",
         platform: "Windows",
-        url: "https://github.com/SkipIt-Labs/Media-Saver/releases/download/v0.1.3/Media.Saver-Setup-0.1.3.exe",
+        url: "https://github.com/papura-octavian/Media-Saver/releases/download/v0.1.3/Media.Saver-Setup-0.1.3.exe",
       },
     ],
   },
 ];
 
-export const platforms: Platform[] = ["Windows", "Android", "Raspberry Pi"];
+export const platforms: Platform[] = ["Windows", "Android", "Raspberry Pi", "Web"];
 
 export function toolPlatforms(tool: Tool): Platform[] {
   return platforms.filter((p) => tool.downloads.some((d) => d.platform === p));

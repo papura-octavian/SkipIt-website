@@ -97,8 +97,8 @@ export default function Hero() {
             variants={item}
             className="mt-6 text-lg text-white/60 max-w-xl mx-auto lg:mx-0 leading-relaxed"
           >
-            A depot of focused, open-source apps for {platforms.join(", ").replace(/, ([^,]*)$/, " and $1")}.
-            Download, install, done. No accounts, no subscriptions.
+            A depot of focused, open-source apps for Windows, Android, Raspberry Pi and the web. Download it or
+            open it, and the problem is gone. No accounts, no subscriptions.
           </motion.p>
 
           <motion.div

@@ -1,15 +1,21 @@
 "use client";
 
-import { ArrowDownToLine, BookOpen, Github, Monitor, Cpu, Smartphone } from "lucide-react";
+import { ArrowDownToLine, ArrowUpRight, BookOpen, Github, Globe, Monitor, Cpu, Smartphone } from "lucide-react";
 import { Spotlight, useSpotlight } from "@/components/Spotlight";
 import ToolIcon from "@/components/ToolIcon";
-import { toolPlatforms, type Platform, type Tool } from "@/lib/tools";
+import { toolPlatforms, type Download, type Platform, type Tool } from "@/lib/tools";
 
 const platformIcons: Record<Platform, React.ComponentType<{ className?: string }>> = {
   Windows: Monitor,
   Android: Smartphone,
   "Raspberry Pi": Cpu,
+  Web: Globe,
 };
+
+/** Web apps open in a new tab; installers download in place. */
+function linkProps(d: Download) {
+  return d.platform === "Web" ? { href: d.url, target: "_blank", rel: "noreferrer" } : { href: d.url };
+}
 
 export function PlatformChips({ tool }: { tool: Tool }) {
   return (
@@ -51,7 +57,7 @@ export default function ToolCard({ tool }: { tool: Tool }) {
               </span>
             )}
           </div>
-          <p className="font-mono text-xs text-white/40 mt-1">v{tool.version}</p>
+          <p className="font-mono text-xs text-white/40 mt-1">{tool.version ? `v${tool.version}` : "web app"}</p>
         </div>
       </div>
 
@@ -64,9 +70,18 @@ export default function ToolCard({ tool }: { tool: Tool }) {
 
       <div className="relative mt-auto pt-6 flex flex-col gap-2.5">
         {single ? (
-          <a href={tool.downloads[0].url} className="btn btn-primary w-full px-5 py-3">
-            <ArrowDownToLine className="w-4 h-4" />
-            Download for {tool.downloads[0].platform}
+          <a {...linkProps(tool.downloads[0])} className="btn btn-primary w-full px-5 py-3">
+            {tool.downloads[0].platform === "Web" ? (
+              <>
+                Open in browser
+                <ArrowUpRight className="w-4 h-4" />
+              </>
+            ) : (
+              <>
+                <ArrowDownToLine className="w-4 h-4" />
+                Download for {tool.downloads[0].platform}
+              </>
+            )}
           </a>
         ) : (
           <div className="rounded-2xl border border-white/10 bg-black/25 divide-y divide-white/[0.07] overflow-hidden">
@@ -75,7 +90,7 @@ export default function ToolCard({ tool }: { tool: Tool }) {
               return (
                 <a
                   key={d.url}
-                  href={d.url}
+                  {...linkProps(d)}
                   className="group/dl flex items-center gap-3 px-4 py-3 text-sm hover:bg-white/[0.06] transition-colors"
                 >
                   <Icon className="w-4 h-4 text-white/45 group-hover/dl:text-cyan transition-colors" />
