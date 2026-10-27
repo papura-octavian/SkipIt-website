@@ -1,0 +1,12 @@
+name = "skipit-requests"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[vars]
+ALLOWED_ORIGINS = "https://skipit.space,https://www.skipit.space,http://localhost:3000"
+# Resend's test sender only delivers to the Resend account's own email (skipittools@gmail.com).
+# After verifying skipit.space in Resend, switch to "SkipIt <noreply@skipit.space>".
+FROM_EMAIL = "SkipIt <onboarding@resend.dev>"
+TO_EMAIL = "skipittools@gmail.com"
+# RESEND_API_KEY is a secret: npx wrangler secret put RESEND_API_KEY
