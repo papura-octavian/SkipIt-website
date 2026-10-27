@@ -131,19 +131,19 @@ export const tools: Tool[] = [
   {
     slug: "pitchchanger",
     name: "PitchChanger",
-    tagline: "Shift pitch by ±24 semitones.",
+    tagline: "Shift pitch by ±24 semitones, boost quiet tracks.",
     description:
-      "Shift the pitch of audio and video files by up to ±24 semitones with drag-and-drop.",
-    version: "1.2.1",
+      "Shift the pitch of audio and video files by up to ±24 semitones with drag-and-drop. Turn up quiet backing tracks or auto-normalize them, without clipping.",
+    version: "1.3.0",
     icon: "wave",
     accent: ["#ff4fb0", "#ff9a5c"],
-    tags: ["audio", "video", "pitch"],
+    tags: ["audio", "video", "pitch", "volume"],
     repoUrl: "https://github.com/papura-octavian/Pitch_changher",
     downloads: [
       {
         label: "Windows installer",
         platform: "Windows",
-        url: "https://github.com/papura-octavian/Pitch_changher/releases/download/v1.2.1/PitchShifter-Setup-1.2.1.exe",
+        url: "https://github.com/papura-octavian/Pitch_changher/releases/download/v1.3.0/PitchShifter-Setup-1.3.0.exe",
       },
     ],
   },
@@ -152,17 +152,17 @@ export const tools: Tool[] = [
     name: "Vers2Go",
     tagline: "Lyrics to PowerPoint in one click.",
     description:
-      "Turn song lyrics into ready-to-present PowerPoint slides, one stanza per slide.",
-    version: "1.0.0",
+      "Turn song lyrics into ready-to-present PowerPoint slides. Mark verses, choruses, bridge and coda, set the singing order, and the chorus repeats where it should.",
+    version: "1.1.0",
     icon: "slides",
     accent: ["#ffb547", "#ff4fb0"],
-    tags: ["lyrics", "powerpoint", "slides"],
+    tags: ["lyrics", "powerpoint", "slides", "chorus"],
     repoUrl: "https://github.com/papura-octavian/Vers2Go",
     downloads: [
       {
         label: "Windows installer",
         platform: "Windows",
-        url: "https://github.com/papura-octavian/Vers2Go/releases/download/v1.0.0/Vers2Go-Setup-1.0.0.exe",
+        url: "https://github.com/papura-octavian/Vers2Go/releases/download/v1.1.0/Vers2Go-Setup-1.1.0.exe",
       },
     ],
   },

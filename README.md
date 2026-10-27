@@ -24,8 +24,8 @@ This repository is the source of [skipit.space](https://skipit.space), the place
 | [Verset Finder](https://versetfinder.study) | Instant Bible search with notes, highlights and a sermon editor | Web |
 | [PocketSync](https://github.com/papura-octavian/PocketSync) | Move files between PC and phone, both ways | Windows, Android |
 | [OmniView](https://github.com/papura-octavian/OmniView) | Open HEIC, AVIF, TIFF, HEVC and 25+ formats without system codecs | Windows |
-| [PitchChanger](https://github.com/papura-octavian/Pitch_changher) | Shift the pitch of audio and video by up to ±24 semitones | Windows |
-| [Vers2Go](https://github.com/papura-octavian/Vers2Go) | Turn song lyrics into PowerPoint slides, one stanza per slide | Windows |
+| [PitchChanger](https://github.com/papura-octavian/Pitch_changher) | Shift the pitch of audio and video by up to ±24 semitones, boost quiet tracks | Windows |
+| [Vers2Go](https://github.com/papura-octavian/Vers2Go) | Turn song lyrics into PowerPoint slides, with verses, choruses, bridge and coda | Windows |
 | [Media Saver](https://github.com/papura-octavian/Media-Saver) | Download playlists and long videos as MP3 or MP4 | Windows |
 
 Missing something? [Request a tool](https://skipit.space/contact/).
