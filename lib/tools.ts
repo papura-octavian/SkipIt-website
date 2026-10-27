@@ -91,7 +91,7 @@ export const tools: Tool[] = [
     tagline: "Move files between PC and phone, both ways.",
     description:
       "A simple app that lets you send files from your PC to your phone and back, without cables or cloud uploads.",
-    version: "1.0.0",
+    version: "1.1.0",
     icon: "sync",
     accent: ["#3ee8b5", "#4cc9ff"],
     tags: ["sync", "transfer", "files"],
@@ -100,12 +100,12 @@ export const tools: Tool[] = [
       {
         label: "Windows installer",
         platform: "Windows",
-        url: "https://github.com/papura-octavian/PocketSync/releases/download/v1.0.0/PocketSync-Setup-1.0.0.exe",
+        url: "https://github.com/papura-octavian/PocketSync/releases/download/v1.1.0/PocketSync-Setup-1.1.0.exe",
       },
       {
         label: "Android APK",
         platform: "Android",
-        url: "https://github.com/papura-octavian/PocketSync/releases/download/v1.0.0/PocketSync-1.0.0.apk",
+        url: "https://github.com/papura-octavian/PocketSync/releases/download/v1.1.0/PocketSync-1.1.0.apk",
       },
     ],
   },
@@ -153,7 +153,7 @@ export const tools: Tool[] = [
     tagline: "Lyrics to PowerPoint in one click.",
     description:
       "Turn song lyrics into ready-to-present PowerPoint slides. Mark verses, choruses, bridge and coda, set the singing order, and the chorus repeats where it should.",
-    version: "1.1.0",
+    version: "1.1.1",
     icon: "slides",
     accent: ["#ffb547", "#ff4fb0"],
     tags: ["lyrics", "powerpoint", "slides", "chorus"],
@@ -162,7 +162,7 @@ export const tools: Tool[] = [
       {
         label: "Windows installer",
         platform: "Windows",
-        url: "https://github.com/papura-octavian/Vers2Go/releases/download/v1.1.0/Vers2Go-Setup-1.1.0.exe",
+        url: "https://github.com/papura-octavian/Vers2Go/releases/download/v1.1.1/Vers2Go-Setup-1.1.1.exe",
       },
     ],
   },
