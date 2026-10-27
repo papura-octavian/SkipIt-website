@@ -1,129 +1,49 @@
-const tools = [
-  {
-    name: "Media Saver",
-    description: "Download playlists, long videos, or full matches without limits.",
-    repoUrl: "https://github.com/SkipIt-Labs/Media-Saver",
-    downloadUrl: "https://github.com/SkipIt-Labs/Media-Saver/releases/download/v0.1.3/Media.Saver-Setup-0.1.3.exe",
-    tags: ["video", "audio", "offline"],
-  },
-  {
-    name: "Vers2Go",
-    description: "Turn song lyrics into ready-to-present PowerPoint slides, one stanza per slide.",
-    repoUrl: "https://github.com/SkipIt-Labs/Vers2Go",
-    downloadUrl: "https://github.com/SkipIt-Labs/Vers2Go/releases/download/v1.0.0/Vers2Go-Setup-1.0.0.exe",
-    tags: ["lyrics", "powerpoint", "slides"],
-  },
-  {
-    name: "PitchChanger",
-    description: "Shift the pitch of audio and video files by up to ±24 semitones with drag-and-drop.",
-    repoUrl: "https://github.com/papura-octavian/Pitch_changher",
-    downloadUrl: "https://github.com/papura-octavian/Pitch_changher/releases/download/v1.2.1/PitchShifter-Setup-1.2.1.exe",
-    tags: ["audio", "video", "pitch"],
-  },
-  {
-    name: "OmniView",
-    description: "Universal media viewer that opens HEIC, AVIF, TIFF, HEVC and 25+ other formats without any system codecs.",
-    repoUrl: "https://github.com/SkipIt-Labs/OmniView",
-    downloadUrl: "https://github.com/SkipIt-Labs/OmniView/releases/download/v1.0.0/OmniView.Setup.1.0.0.exe",
-    tags: ["images", "video", "viewer"],
-  },
-  {
-    name: "PoocketSync Windows",
-    description: "A simple app that let's you transfer files both ways PC to phone and phone to PC",
-    repoUrl: "https://github.com/papura-octavian/PocketSync",
-    downloadUrl: "https://github.com/papura-octavian/PocketSync/releases/download/v1.0.0/PocketSync-Setup-1.0.0.exe",
-    tags: ["sync", "windows"],
-  },
-  {
-    name: "PoocketSync APK",
-    description: "A simple app that let's you transfer files both ways PC to phone and phone to PC",
-    repoUrl: "https://github.com/papura-octavian/PocketSync",
-    downloadUrl: "https://github.com/papura-octavian/PocketSync/releases/download/v1.0.0/PocketSync-1.0.0.apk",
-    tags: ["sync", "Android"],
-  },
-];
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import Reveal from "@/components/Reveal";
+import ToolsBrowser from "@/components/ToolsBrowser";
+import { GITHUB_ORG } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Tools",
+  description: "Every SkipIt tool with a direct download from its latest GitHub release.",
+};
 
 export default function ToolsPage() {
   return (
-    <main className="min-h-screen px-6 md:px-8 py-10 md:py-14">
+    <main className="px-6 md:px-8 pt-10 md:pt-16">
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+        <Reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
           <div>
-            <p className="text-xs tracking-[0.28em] uppercase text-white/50 mb-3">
-              Browse Tools
-            </p>
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">Tools ready to download</h1>
-            <p className="text-white/65">
-              Every tool has a GitHub repo and a direct link to the latest release.
+            <p className="eyebrow mb-3">Browse tools</p>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-[-0.04em]">
+              Ready to <span className="text-gradient">download.</span>
+            </h1>
+            <p className="mt-4 text-white/60 max-w-xl">
+              Every tool links straight to its latest GitHub release. Pick your platform and go.
             </p>
           </div>
-          <a
-            href="https://github.com/SkipIt-Labs"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl btn-ghost font-semibold transition"
-          >
-            View all repos
-            <span className="text-white/60">→</span>
+          <a href={GITHUB_ORG} target="_blank" rel="noreferrer" className="btn btn-ghost px-5 py-3 self-start md:self-auto">
+            All repositories
+            <ArrowUpRight className="w-4 h-4" />
           </a>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tools.map((tool) => (
-            <div
-              key={tool.name}
-              className="glass neon-ring rounded-2xl p-6 flex flex-col h-full"
-            >
-              <div className="mb-4">
-                <h3 className="text-xl font-semibold mb-2">{tool.name}</h3>
-                <p className="text-white/60 text-sm">{tool.description}</p>
-              </div>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {tool.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 rounded-full text-xs bg-black/30 border border-white/10 text-white/70"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-auto flex flex-col gap-3">
-                <a
-                  href={tool.downloadUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full text-center px-5 py-3 rounded-xl btn-primary font-semibold transition"
-                >
-                  Download (Latest)
-                </a>
-                <a
-                  href={tool.repoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full text-center px-5 py-3 rounded-xl btn-ghost font-semibold transition"
-                >
-                  View on GitHub
-                </a>
-              </div>
+        <ToolsBrowser />
+
+        <Reveal className="mt-16">
+          <div className="glass rounded-3xl p-7 md:p-9 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Want something else?</h2>
+              <p className="mt-2 text-white/60">Send your idea and it might become the next tool here.</p>
             </div>
-          ))}
-        </div>
-
-        <div className="mt-12 glass neon-ring rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div>
-            <h2 className="text-2xl font-semibold mb-2">Want something else?</h2>
-            <p className="text-white/65">
-              Send your request and we will turn it into a downloadable tool.
-            </p>
+            <Link href="/contact/" className="btn btn-primary px-6 py-3 self-start md:self-auto">
+              Request a tool
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
-          <a
-            href="contact"
-            className="px-6 py-3 rounded-xl btn-primary font-semibold transition text-center"
-          >
-            Request Tools
-          </a>
-        </div>
+        </Reveal>
       </div>
     </main>
   );

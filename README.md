@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SkipIt website
 
-## Getting Started
+Source for [skipit.space](https://skipit.space): a static Next.js site, exported and published on GitHub Pages by `.github/workflows/nextjs.yml` on every push to `main`.
 
-First, run the development server:
+## Development
+
+```bash
+npm install
+```
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The site runs at http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Publishing a tool
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All tools live in [`lib/tools.ts`](lib/tools.ts). Add an entry at the top of the list (newest first) with its release links; the home page, the hero orbit and `/tools` all read from it. A tool can have several downloads (for example Windows + Android). Set `isNew: true` on the latest one and remove it from the previous one.
 
-## Learn More
+## Request form
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The "Request a tool" form posts to a Cloudflare Worker that emails the request through Resend. The worker lives in [`worker/`](worker/README.md), together with the deploy steps. Until it is deployed, the form falls back to opening the visitor's email app or copying the message.

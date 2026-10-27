@@ -1,111 +1,62 @@
-"use client";
+import type { Metadata } from "next";
+import { Lightbulb, MessageSquareReply, Wrench } from "lucide-react";
+import Reveal from "@/components/Reveal";
+import RequestForm from "@/components/RequestForm";
+import { CONTACT_EMAIL } from "@/lib/site";
 
-import { useMemo, useState } from "react";
-import Link from "next/link";
+export const metadata: Metadata = {
+  title: "Request a tool",
+  description: "Describe a problem you keep running into and we may build the tool for it.",
+};
 
-const EMAIL = "skipittools@gmail.com";
+const points = [
+  { icon: Lightbulb, title: "Describe the problem", text: "Not the solution. What do you do by hand today?" },
+  { icon: Wrench, title: "We look at every idea", text: "If it helps more people, it goes on the build list." },
+  { icon: MessageSquareReply, title: "You get a reply", text: "By email, with questions or a download link." },
+];
 
 export default function ContactPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [request, setRequest] = useState("");
-
-  const canSubmit = useMemo(() => {
-    return email.trim().length > 3 && request.trim().length >= 10;
-  }, [email, request]);
-
-  const mailtoHref = useMemo(() => {
-    const subject = `Tool Request${name.trim() ? ` - ${name.trim()}` : ""}`;
-    const bodyLines = [
-      `Name: ${name.trim() || "-"}`,
-      `Email: ${email.trim() || "-"}`,
-      "",
-      "Request:",
-      request.trim(),
-    ];
-    const body = bodyLines.join("\n");
-    return `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }, [name, email, request]);
-
   return (
-    <main className="min-h-screen px-6 md:px-8 py-10 md:py-14 relative z-10">
-      <div className="max-w-3xl mx-auto">
-        <div className="glass neon-ring rounded-3xl p-8 md:p-10">
-          <p className="text-xs tracking-[0.28em] uppercase text-white/50 mb-3">
-            Request Tools
-          </p>
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">
-            Need a new tool?
+    <main className="px-6 md:px-8 pt-10 md:pt-16">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-14 items-start">
+        <Reveal>
+          <p className="eyebrow mb-3">Request a tool</p>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-[-0.04em]">
+            Got a problem <span className="text-gradient">worth skipping?</span>
           </h1>
-          <p className="text-white/65 mb-8">
-            Send us your idea and we will reply by email. Your message will be sent to {EMAIL}.
+          <p className="mt-5 text-white/60 max-w-md leading-relaxed">
+            Tell us what keeps slowing you down. The best tools here started as one person&apos;s annoying,
+            repetitive task.
           </p>
 
-          <div className="space-y-5">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm text-white/70 mb-1">
-                  Name <span className="text-white/40">(optional)</span>
-                </label>
-                <input
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg bg-black/30 border border-white/15 focus:border-white/30 outline-none"
-                  placeholder="Your name"
-                />
-              </div>
+          <ul className="mt-10 space-y-5">
+            {points.map((p) => (
+              <li key={p.title} className="flex gap-4">
+                <span className="grid place-items-center shrink-0 w-11 h-11 rounded-2xl glass text-cyan">
+                  <p.icon className="w-5 h-5" />
+                </span>
+                <div>
+                  <p className="font-medium">{p.title}</p>
+                  <p className="text-sm text-white/50 mt-0.5">{p.text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
 
-              <div>
-                <label className="block text-sm text-white/70 mb-1">
-                  Email <span className="text-white/40">(required)</span>
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg bg-black/30 border border-white/15 focus:border-white/30 outline-none"
-                  placeholder="you@email.com"
-                  required
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm text-white/70 mb-1">
-                What do you want to solve?
-              </label>
-              <textarea
-                value={request}
-                onChange={(e) => setRequest(e.target.value)}
-                className="w-full min-h-[140px] px-4 py-3 rounded-lg bg-black/30 border border-white/15 focus:border-white/30 outline-none resize-y"
-                placeholder="Describe the task: what you do today, what inputs you have, what output you want."
-                required
-              />
-              <p className="text-xs text-white/45 mt-2">
-                Tip: include a sample input/output if you can.
-              </p>
-            </div>
-
-            <a
-              href={mailtoHref}
-              className={`w-full inline-flex items-center justify-center py-3 rounded-xl btn-primary font-semibold transition ${
-                canSubmit ? "" : "opacity-50 pointer-events-none"
-              }`}
-            >
-              Open email
+          <p className="mt-10 text-sm text-white/45">
+            Prefer email? Write to{" "}
+            <a href={`mailto:${CONTACT_EMAIL}`} className="text-white/80 hover:text-cyan underline underline-offset-4">
+              {CONTACT_EMAIL}
             </a>
+            .
+          </p>
+        </Reveal>
 
-            <div className="text-sm text-center text-white/60">
-              Prefer browsing?{" "}
-              <Link
-                href="/tools"
-                className="text-white/80 hover:text-white underline underline-offset-4"
-              >
-                View tools
-              </Link>
-            </div>
+        <Reveal delay={0.1}>
+          <div className="glass gradient-border is-lit relative rounded-3xl p-6 md:p-9">
+            <RequestForm />
           </div>
-        </div>
+        </Reveal>
       </div>
     </main>
   );

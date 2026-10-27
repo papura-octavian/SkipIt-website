@@ -1,258 +1,234 @@
 import Link from "next/link";
-import Image from "next/image";
+import { ArrowRight, ArrowUpRight, Github, HardDrive, MousePointerClick, Package, Rocket, ShieldCheck, Zap } from "lucide-react";
+import Hero from "@/components/home/Hero";
+import Reveal from "@/components/Reveal";
 import SpotlightCard from "@/components/SpotlightCard";
-import { HardDrive, ShieldCheck, Rocket, Zap, Package, Cpu, Github } from "lucide-react";
+import ToolIcon from "@/components/ToolIcon";
+import { PlatformChips } from "@/components/ToolCard";
+import { tools } from "@/lib/tools";
+
+const marqueeWords = [
+  "No accounts",
+  "Open source",
+  "Windows",
+  "Android",
+  "Raspberry Pi",
+  "No subscriptions",
+  "Direct downloads",
+  "Runs on your machine",
+];
+
+const steps = [
+  {
+    icon: MousePointerClick,
+    title: "Pick a tool",
+    text: "Each one does a single job. Read one line and you know if it fits.",
+  },
+  {
+    icon: Rocket,
+    title: "Download the installer",
+    text: "Straight from the GitHub release. No sign-up wall, no email gate.",
+  },
+  {
+    icon: Zap,
+    title: "Problem solved",
+    text: "Install once and keep it around for the next time you need it.",
+  },
+];
+
+function SectionHeading({ eyebrow, title, action }: { eyebrow: string; title: string; action?: React.ReactNode }) {
+  return (
+    <Reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+      <div>
+        <p className="eyebrow mb-3">{eyebrow}</p>
+        <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em]">{title}</h2>
+      </div>
+      {action}
+    </Reveal>
+  );
+}
 
 export default function Home() {
   return (
-    <main className="min-h-screen text-white relative z-10">
-      <section className="px-6 md:px-8 pt-10 md:pt-14 pb-10 md:pb-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="glass neon-ring rounded-3xl px-6 md:px-10 py-10 md:py-14">
-            <div className="flex justify-center mb-6 md:mb-8">
-              <div className="relative">
-                <div
-                  className="absolute -inset-8 rounded-full blur-3xl opacity-40"
-                  style={{
-                    background:
-                      "radial-gradient(circle, rgba(124,92,255,0.45), transparent 60%)",
-                  }}
-                />
-                <Image
-                  src={`glitch_logo.gif`}
-                  alt="SkipIt"
-                  width={520}
-                  height={520}
-                  unoptimized
-                  priority
-                  className="relative object-contain drop-shadow-[0_40px_80px_rgba(124,92,255,0.22)]"
-                />
-              </div>
-            </div>
+    <main>
+      <Hero />
 
-            <div className="text-center">
-              <p className="text-xs tracking-[0.28em] uppercase text-white/50 mb-3">
-                Rapid • Minimal • No accounts
-              </p>
-              <h1 className="text-3xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
-                  A static depot of practical tools
-                </span>
-              </h1>
-              <p className="text-lg md:text-xl text-white/70 italic mb-8 max-w-2xl mx-auto">
-                Download, install, solve the problem. No subscriptions, no endless searching.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                <Link
-                  href="/tools"
-                  className="px-8 py-3 rounded-xl btn-primary font-semibold transition w-full sm:w-auto text-center"
-                >
-                  Browse Tools
-                </Link>
-                <Link
-                  href="/contact"
-                  className="px-8 py-3 rounded-xl btn-ghost font-semibold transition w-full sm:w-auto text-center"
-                >
-                  Request Tools
-                </Link>
-              </div>
-            </div>
-          </div>
+      <div className="marquee overflow-hidden border-y border-white/[0.06] bg-white/[0.015] py-4" aria-hidden="true">
+        <div className="marquee-track">
+          {[...marqueeWords, ...marqueeWords].map((word, i) => (
+            <span key={i} className="flex items-center gap-8 pr-8 font-mono text-sm uppercase tracking-[0.2em] text-white/35">
+              {word}
+              <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-cyan to-pink" />
+            </span>
+          ))}
         </div>
-      </section>
+      </div>
 
-      <section className="px-6 md:px-8 py-10 md:py-14">
+      <section className="px-6 md:px-8 pt-20 md:pt-28">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold">Why SkipIt?</h2>
-            <div className="hidden md:block h-px flex-1 ml-6 bg-gradient-to-r from-white/0 via-white/15 to-white/0" />
-          </div>
+          <SectionHeading eyebrow="Why SkipIt" title="Built to get out of your way." />
 
           <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-            <SpotlightCard
-              eyebrow="OFFLINE"
-              title="Runs locally."
-              description="Every tool is built to run on your machine, with no uploads or accounts."
-              className="md:col-span-4 md:row-span-2"
-              icon={
-                <div className="flex items-center gap-2">
-                  <HardDrive className="w-5 h-5" />
-                  <ShieldCheck className="w-5 h-5" />
+            <Reveal className="md:col-span-4">
+              <SpotlightCard
+                eyebrow="Local first"
+                title="Your machine, your files."
+                description="Tools run on your own devices. No uploads to someone else's server, no account to create, no telemetry dashboard."
+                icon={
+                  <div className="flex items-center gap-2">
+                    <HardDrive className="w-5 h-5" />
+                    <ShieldCheck className="w-5 h-5" />
+                  </div>
+                }
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
+                    <p className="eyebrow">No cloud</p>
+                    <p className="mt-2 text-sm text-white/80">Your data never leaves your devices.</p>
+                  </div>
+                  <div className="rounded-2xl border border-cyan/25 bg-black/30 p-4">
+                    <p className="eyebrow !text-cyan/80">Fast</p>
+                    <p className="mt-2 text-sm text-white/80">Click and go, even offline.</p>
+                  </div>
                 </div>
-              }
-            >
-              <div className="mt-1 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
-                  <p className="text-[11px] tracking-[0.24em] uppercase text-white/45">
-                    no cloud
-                  </p>
-                  <p className="mt-2 text-sm text-white/80">
-                    Your files stay with you.
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-cyan-300/25 bg-black/30 p-4">
-                  <p className="text-[11px] tracking-[0.24em] uppercase text-cyan-200/70">
-                    fast
-                  </p>
-                  <p className="mt-2 text-sm text-white/80">
-                    Click and go.
-                  </p>
-                </div>
-              </div>
-            </SpotlightCard>
+              </SpotlightCard>
+            </Reveal>
 
-            <SpotlightCard
-              eyebrow="GITHUB"
-              title="Direct downloads."
-              description="Each tool has a GitHub repo and a simple latest-release link."
-              className="md:col-span-2 md:row-span-2"
-              icon={
-                <div className="flex items-center gap-2">
-                  <Github className="w-5 h-5" />
+            <Reveal className="md:col-span-2" delay={0.08}>
+              <SpotlightCard
+                eyebrow="Open source"
+                title="Every line on GitHub."
+                description="Each tool has a public repo and a release page with the installer."
+                icon={<Github className="w-5 h-5" />}
+              >
+                <div className="flex flex-wrap gap-2">
+                  <span className="chip">release builds</span>
+                  <span className="chip">readme</span>
+                  <span className="chip">free</span>
                 </div>
-              }
-            >
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 rounded-full text-xs bg-black/30 border border-white/10 text-white/70">
-                  release builds
-                </span>
-                <span className="px-3 py-1 rounded-full text-xs bg-black/30 border border-white/10 text-white/70">
-                  quick README
-                </span>
-                <span className="px-3 py-1 rounded-full text-xs bg-black/30 border border-white/10 text-white/70">
-                  open source
-                </span>
-              </div>
-            </SpotlightCard>
+              </SpotlightCard>
+            </Reveal>
 
-            <SpotlightCard
-              eyebrow="START"
-              title="Instant launch."
-              description="Install once, keep it handy forever."
-              className="md:col-span-4"
-              icon={
-                <div className="flex items-center gap-2">
-                  <Rocket className="w-5 h-5" />
-                  <Zap className="w-5 h-5" />
-                </div>
-              }
+            <Reveal className="md:col-span-3" delay={0.04}>
+              <SpotlightCard
+                eyebrow="Instant"
+                title="Install once, keep forever."
+                description="No subscriptions that expire and no feature walls. The version you download keeps working."
+                icon={<Rocket className="w-5 h-5" />}
+              />
+            </Reveal>
+
+            <Reveal className="md:col-span-3" delay={0.12}>
+              <SpotlightCard
+                eyebrow="Lean"
+                title="No bloat."
+                description="Small, focused tools that do one thing extremely well, instead of one app that does everything badly."
+                icon={<Package className="w-5 h-5" />}
+              />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 md:px-8 pt-20 md:pt-28">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeading
+            eyebrow="The depot"
+            title="Available tools"
+            action={
+              <Link href="/tools/" className="btn btn-ghost px-5 py-2.5 text-sm self-start sm:self-auto">
+                All downloads
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            }
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {tools.map((tool, i) => (
+              <Reveal key={tool.slug} delay={(i % 3) * 0.06}>
+                <Link
+                  href={`/tools/#${tool.slug}`}
+                  className="group glass gradient-border relative flex h-full flex-col rounded-3xl p-6 transition-transform duration-300 hover:-translate-y-1"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <ToolIcon tool={tool} />
+                    <ArrowUpRight className="w-5 h-5 text-white/30 transition-all duration-300 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
+                  <div className="mt-5 flex items-center gap-2">
+                    <h3 className="text-lg font-semibold tracking-tight">{tool.name}</h3>
+                    {tool.isNew && (
+                      <span className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#0a0a12] bg-gradient-to-r from-cyan to-pink">
+                        New
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-1.5 text-sm text-white/55 leading-relaxed">{tool.tagline}</p>
+                  <div className="mt-auto pt-5">
+                    <PlatformChips tool={tool} />
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 md:px-8 pt-20 md:pt-28">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeading eyebrow="How it works" title="Three steps. That's it." />
+
+          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div
+              aria-hidden="true"
+              className="hidden md:block absolute top-[52px] left-[16%] right-[16%] h-px bg-gradient-to-r from-cyan/0 via-violet/40 to-pink/0"
             />
-
-            <SpotlightCard
-              eyebrow="LEAN"
-              title="No bloat."
-              description="Small, focused tools that do one thing extremely well."
-              className="md:col-span-2"
-              icon={
-                <div className="flex items-center gap-2">
-                  <Package className="w-5 h-5" />
-                  <Cpu className="w-5 h-5" />
+            {steps.map((step, i) => (
+              <Reveal key={step.title} delay={i * 0.1}>
+                <div className="relative glass rounded-3xl p-7 h-full">
+                  <div className="flex items-center gap-3">
+                    <span className="grid place-items-center w-12 h-12 rounded-2xl bg-black/40 border border-white/10 text-cyan">
+                      <step.icon className="w-5 h-5" />
+                    </span>
+                    <span className="font-mono text-xs text-white/35">0{i + 1}</span>
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold">{step.title}</h3>
+                  <p className="mt-2 text-sm text-white/55 leading-relaxed">{step.text}</p>
                 </div>
-              }
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 md:px-8 pt-20 md:pt-28">
+        <Reveal className="max-w-6xl mx-auto">
+          <div className="glass relative overflow-hidden rounded-[2rem] px-6 md:px-12 py-14 md:py-20 text-center">
+            <div
+              aria-hidden="true"
+              className="absolute -top-1/2 left-1/2 -translate-x-1/2 w-[80%] aspect-square rounded-full blur-3xl opacity-40"
+              style={{ background: "radial-gradient(circle, rgba(255,79,176,0.5), rgba(139,123,255,0.3) 40%, transparent 70%)" }}
             />
+            <div className="relative">
+              <p className="eyebrow mb-4">Missing something?</p>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.035em] max-w-2xl mx-auto">
+                Tell us the problem. <span className="text-gradient">We build the tool.</span>
+              </h2>
+              <p className="mt-5 text-white/60 max-w-xl mx-auto">
+                Describe what slows you down. If it&apos;s useful to others too, it becomes the next SkipIt tool.
+              </p>
+              <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
+                <Link href="/contact/" className="btn btn-primary px-8 py-3.5">
+                  Request a tool
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link href="/tools/" className="btn btn-ghost px-8 py-3.5">
+                  Browse tools
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </section>
-
-      <section className="px-6 md:px-8 py-10 md:py-14">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold">Available tools</h2>
-            <div className="hidden md:block h-px flex-1 ml-6 bg-gradient-to-r from-white/0 via-white/15 to-white/0" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="glass neon-ring rounded-2xl p-6 hover:border-white/30 transition">
-              <h3 className="text-xl font-semibold mb-2">Media Saver</h3>
-              <p className="text-white/60 text-sm mb-4">
-                Download playlists, long videos, or full matches without limits.
-              </p>
-            </div>
-
-            <div className="glass neon-ring rounded-2xl p-6 hover:border-white/30 transition">
-              <h3 className="text-xl font-semibold mb-2">Vers2Go</h3>
-              <p className="text-white/60 text-sm mb-4">
-                Turn song lyrics into ready-to-present PowerPoint slides, one stanza per slide.
-              </p>
-            </div>
-
-            <div className="glass neon-ring rounded-2xl p-6 hover:border-white/30 transition">
-              <h3 className="text-xl font-semibold mb-2">PitchChanger</h3>
-              <p className="text-white/60 text-sm mb-4">
-                Shift the pitch of audio and video files by up to ±24 semitones with drag-and-drop.
-              </p>
-            </div>
-
-            <div className="glass neon-ring rounded-2xl p-6 hover:border-white/30 transition">
-              <h3 className="text-xl font-semibold mb-2">OmniView</h3>
-              <p className="text-white/60 text-sm mb-4">
-                Universal media viewer that opens HEIC, AVIF, TIFF, HEVC and 25+ other formats without any system codecs.
-              </p>
-            </div>
-
-          </div>
-
-          <div className="text-center mt-12">
-            <Link
-              href="/tools"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl btn-ghost font-semibold transition"
-            >
-              View all tools
-              <span className="text-white/60">→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 md:px-8 pb-14">
-        <div className="max-w-6xl mx-auto">
-          <div className="glass neon-ring rounded-3xl px-6 md:px-10 py-10 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3">Need a new tool?</h2>
-            <p className="text-white/65 mb-8 max-w-2xl mx-auto">
-              Send your idea and we will turn it into a downloadable tool.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                href="/contact"
-                className="px-8 py-3 rounded-xl btn-primary font-semibold transition"
-              >
-                Request Tools
-              </Link>
-              <Link
-                href="/tools"
-                className="px-8 py-3 rounded-xl btn-ghost font-semibold transition"
-              >
-                Browse Tools
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer className="px-6 md:px-8 pb-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="h-px w-full bg-gradient-to-r from-white/0 via-white/10 to-white/0 mb-6" />
-          <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-white/45">
-            <div>© {new Date().getFullYear()} SkipIt.</div>
-            <div className="flex items-center gap-2">
-              <Link
-                href="/tools"
-                className="transition text-white/45 hover:text-cyan-300"
-              >
-                Tools
-              </Link>
-              <span className="text-white/25">|</span>
-              <Link
-                href="/contact"
-                className="transition text-white/45 hover:text-cyan-300"
-              >
-                Request Tools
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }
