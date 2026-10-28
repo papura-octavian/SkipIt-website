@@ -1,4 +1,4 @@
-import { ArrowLeftRight, AudioWaveform, BookOpenText, Download, Power, Presentation, ScanEye } from "lucide-react";
+import { ArrowLeftRight, AudioWaveform, BookOpenText, Download, Power, Presentation, RefreshCw, ScanEye } from "lucide-react";
 import type { Tool, ToolIconName } from "@/lib/tools";
 
 const icons: Record<ToolIconName, React.ComponentType<{ className?: string }>> = {
@@ -9,6 +9,7 @@ const icons: Record<ToolIconName, React.ComponentType<{ className?: string }>> =
   eye: ScanEye,
   sync: ArrowLeftRight,
   power: Power,
+  convert: RefreshCw,
 };
 
 export default function ToolIcon({ tool, size = "md" }: { tool: Tool; size?: "sm" | "md" }) {

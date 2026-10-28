@@ -1,6 +1,6 @@
 export type Platform = "Windows" | "Android" | "Raspberry Pi" | "Web";
 
-export type ToolIconName = "download" | "slides" | "wave" | "eye" | "sync" | "power" | "book";
+export type ToolIconName = "download" | "slides" | "wave" | "eye" | "sync" | "power" | "book" | "convert";
 
 export type Download = {
   label: string;
@@ -31,6 +31,26 @@ export type Tool = {
 // Newest first. To publish a tool, add it here: the home page and /tools both read this list.
 export const tools: Tool[] = [
   {
+    slug: "ultimate-convertor",
+    name: "Ultimate Convertor",
+    tagline: "Convert images, video, audio and data in one drop.",
+    description:
+      "Drop files or whole folders and convert them all at once: HEIC, AVIF, WebP, PNG, MP4, MKV, GIF, MP3, FLAC, JSON, CSV and more, or many images into one PDF. A Rust engine works on every core and remuxes video in seconds. Units, numbers and colors too.",
+    version: "1.0.0",
+    icon: "convert",
+    accent: ["#3ee8b5", "#8b7bff"],
+    tags: ["convert", "images", "video", "audio", "pdf"],
+    repoUrl: "https://github.com/papura-octavian/Ultimate-Convertor",
+    isNew: true,
+    downloads: [
+      {
+        label: "Windows installer",
+        platform: "Windows",
+        url: "https://github.com/papura-octavian/Ultimate-Convertor/releases/download/v1.0.0/UltimateConvertor-Setup-1.0.0.exe",
+      },
+    ],
+  },
+  {
     slug: "tailcontrol",
     name: "TailControl",
     tagline: "Power your PCs on and off from your phone.",
@@ -43,7 +63,6 @@ export const tools: Tool[] = [
     repoUrl: "https://github.com/papura-octavian/tailcontrol",
     docsUrl: "https://github.com/papura-octavian/tailcontrol/blob/main/docs/setup-checklist.md",
     note: "Needs Tailscale and a Raspberry Pi. Follow the setup guide; checksums are in the release.",
-    isNew: true,
     downloads: [
       {
         label: "App for Android 11+",

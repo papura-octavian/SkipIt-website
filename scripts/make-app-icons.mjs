@@ -26,6 +26,7 @@ const lucideFile = {
   eye: "scan-eye",
   sync: "arrow-left-right",
   power: "power",
+  convert: "refresh-cw",
 };
 const GLYPH = "#0a0a12";
 

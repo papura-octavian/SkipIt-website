@@ -20,6 +20,7 @@ This repository is the source of [skipit.space](https://skipit.space), the place
 
 | Tool | What it does | Platforms |
 |---|---|---|
+| [Ultimate Convertor](https://github.com/papura-octavian/Ultimate-Convertor) | Convert images, video, audio, data and documents in bulk, plus units, numbers and colors | Windows |
 | [TailControl](https://github.com/papura-octavian/tailcontrol) | Wake, shut down, lock or sleep your own PCs from your phone, over Tailscale | Android, Windows, Raspberry Pi |
 | [Verset Finder](https://versetfinder.study) | Instant Bible search with notes, highlights and a sermon editor | Web |
 | [PocketSync](https://github.com/papura-octavian/PocketSync) | Move files between PC and phone, both ways | Windows, Android |
